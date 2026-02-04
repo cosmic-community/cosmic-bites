@@ -23,6 +23,9 @@ export default function Footer() {
             <Link href="/#latest" className="text-gray-600 hover:text-coral-500 text-sm font-medium transition-colors">
               Stories
             </Link>
+            <Link href="/about" className="text-gray-600 hover:text-coral-500 text-sm font-medium transition-colors">
+              About
+            </Link>
           </nav>
         </div>
 

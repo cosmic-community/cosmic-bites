@@ -39,6 +39,9 @@ export default function Header() {
               <Link href="/#latest" className="text-gray-600 hover:text-coral-500 font-medium transition-colors">
                 Stories
               </Link>
+              <Link href="/about" className="text-gray-600 hover:text-coral-500 font-medium transition-colors">
+                About
+              </Link>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -99,6 +102,13 @@ export default function Header() {
             className="block py-3 px-4 text-gray-700 hover:bg-coral-50 hover:text-coral-600 rounded-lg font-medium transition-colors"
           >
             📖 Latest Stories
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => setIsMenuOpen(false)}
+            className="block py-3 px-4 text-gray-700 hover:bg-coral-50 hover:text-coral-600 rounded-lg font-medium transition-colors"
+          >
+            ℹ️ About
           </Link>
         </nav>
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-100">

@@ -45,6 +45,18 @@ export interface Post extends CosmicObject {
   };
 }
 
+export interface AboutPage extends CosmicObject {
+  type: 'about-page';
+  metadata: {
+    headline: string;
+    subheadline?: string;
+    hero_image?: FileMetafield;
+    content: string;
+    mission_title?: string;
+    mission_description?: string;
+  };
+}
+
 // Simple error helper for Cosmic SDK
 export function hasStatus(error: unknown): error is { status: number } {
   return typeof error === 'object' && error !== null && 'status' in error;

@@ -1,5 +1,5 @@
 import { createBucketClient } from '@cosmicjs/sdk';
-import { Post, Category, Author, hasStatus } from '@/types';
+import { Post, Category, Author, AboutPage, hasStatus } from '@/types';
 
 export const cosmic = createBucketClient({
   bucketSlug: process.env.COSMIC_BUCKET_SLUG as string,
@@ -124,5 +124,25 @@ export async function getPostsByAuthor(authorId: string): Promise<Post[]> {
       return [];
     }
     throw new Error('Failed to fetch posts by author');
+  }
+}
+
+export async function getAboutPage(): Promise<AboutPage | null> {
+  try {
+    const response = await cosmic.objects
+      .find({ type: 'about-page' })
+      .props(['id', 'title', 'slug', 'metadata'])
+      .depth(1);
+    
+    // Since it's a singleton, return the first (and only) object
+    if (response.objects && response.objects.length > 0) {
+      return response.objects[0] as AboutPage;
+    }
+    return null;
+  } catch (error) {
+    if (hasStatus(error) && error.status === 404) {
+      return null;
+    }
+    throw new Error('Failed to fetch about page');
   }
 }
