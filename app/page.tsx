@@ -12,12 +12,24 @@ export default async function HomePage() {
   const featuredPost = posts[0];
   const recentPosts = posts.slice(1);
 
+  // Get a hero image from the featured post or use a default food image
+  const heroImageUrl = featuredPost?.metadata?.featured_image?.imgix_url
+    ? `${featuredPost.metadata.featured_image.imgix_url}?w=1920&h=800&fit=crop&auto=format,compress`
+    : 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&h=800&fit=crop&auto=format,compress';
+
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-coral-500 via-coral-400 to-ocean-400 text-white">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative max-w-6xl mx-auto px-4 py-24 md:py-32">
+      <section className="relative text-white min-h-[500px] md:min-h-[600px] flex items-center">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('${heroImageUrl}')` }}
+        />
+        {/* Black Opacity Overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+        {/* Content */}
+        <div className="relative max-w-6xl mx-auto px-4 py-24 md:py-32 w-full">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Wanderlust Bites
           </h1>
